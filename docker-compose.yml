@@ -1,0 +1,36 @@
+services:
+  gotify:
+    image: ghcr.io/gotify/server:2.1.7
+    restart: always
+    expose:
+      - 80
+      - 443
+    ports:
+      - 443:443
+      - 80:80
+    environment:
+      - 'GOTIFY_SERVER_SSL_ENABLED=true'
+      - 'GOTIFY_SERVER_SSL_REDIRECTTOHTTPS=false'
+      - 'GOTIFY_SERVER_SSL_LETSENCRYPT_ENABLED=true'
+      - 'GOTIFY_SERVER_SSL_LETSENCRYPT_ACCEPTTOS=true'
+      - 'GOTIFY_SERVER_SSL_LETSENCRYPT_HOSTS=- notify.my-domain.com'
+    networks:
+      - notify-network
+    volumes:
+      - notify-gotify-data:/app/data
+  nextcloud-talk-notifier:
+    image: janscheible/nextcloud-talk-notifier:1.0.3
+    restart: always
+    command: ["--spring.config.location=/app/application.properties", "--notifier.client.gotify.base-url=http://gotify"]
+    environment:
+      - 'JASYPT_ENCRYPTOR_PASSWORD=password'
+    networks:
+      - notify-network
+    volumes:
+      - ./application.properties:/app/application.properties
+    depends_on:
+      - gotify
+networks:
+  notify-network:
+volumes:
+  notify-gotify-data:

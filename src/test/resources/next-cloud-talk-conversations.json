@@ -1,0 +1,29 @@
+{
+	"ocs": {
+		"meta": {
+			"status": "ok",
+			"statuscode": 200,
+			"message": "OK"
+		},
+		"data": [
+			{
+				"id": 3,
+				"displayName": "Room",
+				"lastMessage": {
+					"id": 1937,
+					"timestamp": 1665909146,
+					"actorId": "user"
+				}
+			},
+			{
+				"id": 6,
+				"displayName": "Talk Updates ✅",
+				"lastMessage": {
+					"id": 889,
+					"timestamp": 1639068094,
+					"actorId": "changelog"
+				}
+			}
+		]
+	}
+}
