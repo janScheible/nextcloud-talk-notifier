@@ -19,7 +19,7 @@ services:
     volumes:
       - notify-gotify-data:/app/data
   nextcloud-talk-notifier:
-    image: janscheible/nextcloud-talk-notifier:1.0.3
+    image: janscheible/nextcloud-talk-notifier:1.0.4
     restart: always
     command: ["--spring.config.location=/app/application.properties", "--notifier.client.gotify.base-url=http://gotify"]
     environment:
